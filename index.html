@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>College Management</title>
+</head>
+<body>
+  <h2>Add College</h2>
+  <form id="collegeForm">
+    <input type="text" placeholder="College Name" id="cname" required />
+    <input type="text" placeholder="Address" id="address" required />
+    <button type="submit">Add College</button>
+  </form>
+
+  <script>
+    document.getElementById("collegeForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      await fetch("/colleges", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: document.getElementById("cname").value,
+          address: document.getElementById("address").value
+        })
+      });
+
+      alert("College Added");
+    });
+  </script>
+</body>
+</html>
